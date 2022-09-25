@@ -1,0 +1,146 @@
+<%- include('partials/header') -%>
+  <div class="container">
+    <div class="row justify-content-center mt-5">
+      <ul class="row list-unstyled">
+        <% for(var i=0; i < columns.length; i++) {%>
+            <section class="column card" data-id="<%= columns[i]._id %>">
+                <p class="card-title"><%= columns[i].title %></p>
+                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#modalCreateCard" data-bs-columnid="<%= columns[i]._id %>">
+                    Add a card  
+                </button>
+                <ul class="row list-unstyled">
+                    <% for(var j=0; j < columns[i].cards.length; j++) {%>
+                        <div class="card" data-cardid="<%= columns[i].cards[j]._id %>">
+                            <div class="card-body">
+                                <h5 class="card-title"><%= columns[i].cards[j].title %></h5>
+                                <h6 class="card-subtitle mb-2 text-muted">Type: <%= columns[i].cards[j].type %></h6>
+                                <p class="card-text">Description: <%= columns[i].cards[j].description %></p>
+                                
+                              </div>
+                        </div>
+                        
+                        <div class="row">
+                          <div class="col-md-4 col-xl-3">
+                              <div class="card bg-c-blue order-card" data-cardid="<%= columns[i].cards[j]._id %>">
+                                  <div class="card-block">
+                                      <h6 class="m-b-20"><%= columns[i].cards[j].title %></h6>
+                                      <h2 class="text-right"><i class="fa fa-cart-plus f-left"></i><span>8</span></h2>
+                                      <!-- <p class="m-b-0">Completed Orders<span class="f-right">351</span></p> -->
+                                      <p class="m-b-0"><%= columns[i].cards[j].notes %></span></p>
+                                  </div>
+                              </div>
+                          </div>
+                    <% } %>
+                </ul>
+            </section>
+        <% } %>
+        </ul>
+    </div>
+  </div>
+  <!--Add button-->
+  <!-- <a href="#" class="float">
+    <span class="my-float material-symbols-outlined">
+        add
+        </span>
+    </a> -->
+
+    <button type="button" style="border-width: 0;" class="floating-container" data-bs-toggle="modal" data-bs-target="#modalCreateColumn">
+        <div class="floating-button material-icons">dashboard</div>      
+    </button>
+    
+
+
+<!--Modal: Create Column-->
+  <div class="modal" tabindex="-1" id="modalCreateColumn">
+    <form action="/kanban/createColumn" method='POST'>
+    
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Create Column</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" placeholder="Enter Column Title" name='title'>
+            </div>
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <input type="submit" value="Update Column" class="btn btn-primary">
+        </div>
+      </div>
+    </div>
+    
+    </form>
+  </div>  
+
+  <!--Modal: Create Card-->
+  <div class="modal" tabindex="-1" id="modalCreateCard">
+    <form id="formCreateCard" action="/kanban/createCard" method='POST'>
+    
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Create Card</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" placeholder="Enter Column Title" name='title'>
+
+                
+            <label for="cardPriority" class="mt-2">Choose card priority</label>
+            <select name="priority" class="form-select" id="cardPriority">
+                <option value=false>Not Urgent</option>
+                <option value=true>Urgent</option>              
+            </select>
+
+            <label for="cardDifficulty"  class="mt-2">Choose card Difficulty</label>
+            <select name="difficulty" class="form-select" id="cardDifficulty">
+              <option value="">--Please choose a priority--</option>
+              <option value=1>Trivial</option>
+              <option value=3>Easy</option>
+              <option value=5>Medium</option>
+              <option value=8>Hard</option>
+              <option value=13>Epic</option>        
+          </select>
+
+            <label for="dueDate" class="mt-2">Due Date</label>
+            <input type="date" id="cardDueDate" name="dueDate" class="form-control">
+            </div>
+
+            <label for="notes" class="mt-2">Notes:</label>
+            <textarea id="cardNotes" name="notes" class="form-control" rows="3">
+            
+            </textarea>
+            <div class="form-check ">
+              <input class="form-check-input" type="checkbox" value="" id="cardRepeat" name="name">
+              <label class="form-check-label" for="cardRepeat">
+                Repeat
+              </label>
+            </div>
+
+            <!-- <label for="todos">Todos</label>
+            <section class="card" id="modalCardTodos">
+              <input type="text" class="form-control" placeholder="Enter Column Title" name='todos[]'>
+            </section> -->
+                
+
+            <input type="hidden" id="cardColumnID" name="columnID">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <input type="submit" value="Update Column" class="btn btn-primary">
+        </div>
+      </div>
+    </div>
+    
+    </form>
+  </div>
+<!-- Kanaban only scripts   -->
+<script src="/js/kanban.js"></script>
+<%- include('partials/footer') -%>
