@@ -20,4 +20,6 @@ router.put("/toggleTodo/:id", kanbanController.toggleTodo);
 
 router.delete("/deleteTodo/:id", kanbanController.deleteTodo);
 
+router.put("/moveCard/", kanbanController.moveCard);
+
 module.exports = router;

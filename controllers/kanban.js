@@ -23,15 +23,15 @@ module.exports = {
       let columns = await Column.find({ user: req.user.id })
       for (const column of columns) {
         const cards = await Card.find({ columnID: column._id }).populate('cards').sort({ createdDate: "desc" }).lean();
-        column.cards = cards
+        column._doc.cards = cards
 
-        for(const card of cards){
-          const todos = await Todo.find({cardID: card._id}).populate('todos').sort({ createdDate: "desc" }).lean();
+        for (const card of cards) {
+          const todos = await Todo.find({ cardID: card._id }).populate('todos').sort({ createdDate: "desc" }).lean();
           column.cards.todos = todos;
         }
       }
 
-      
+
       console.log("get board")
       console.log(columns)
       res.render("kanban.ejs", { columns: columns });
@@ -76,7 +76,7 @@ module.exports = {
 
       console.log("Card has been added!");
       res.redirect("/kanban");
-    } catch(err){
+    } catch (err) {
       console.log(err);
     }
   },
@@ -153,6 +153,25 @@ module.exports = {
     } catch (err) {
       console.log(err)
     }
+  },
+  moveCard: async (req, res) => {
+    try {
+      const cardID = req.body.cardID;
+      const newColumnID = req.body.columnID;
+
+      await Card.findOneAndUpdate(
+        { _id: req.body.cardID },
+        {
+          $set: { "columnID": req.body.columnID },
+        }
+      );
+
+      console.log(`card (${cardID}) has been moved to column (${newColumnID})`)
+      res.redirect('/kanban');
+    } catch (err) {
+      console.log(err);
+    }
   }
+
 
 };
