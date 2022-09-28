@@ -65,11 +65,15 @@ function addCardToTarget(cardID, columnID) {
 const columnOptions = document.querySelectorAll('.column-options')
 columnOptions.forEach(button => {
   button.addEventListener('click', (e)=>{
-    const dropdown = e.target.ParentNode.querySelector('dropdown-content');
+    
+    const dropdown = e.target.parentNode.querySelector('.dropdown-content');
+    console.log(dropdown)
     dropdown.classList.toggle("show");
-  })
-  const columnID = e.target.ParentNode.ParentNode.dataset.columnid
+    const columnID = e.target.parentNode.parentNode.dataset.columnid
+
+  })  
 })
+
 
 function columnMenu(){
   document.getElementById("myDropdown").classList.toggle("show");
@@ -77,6 +81,20 @@ function columnMenu(){
 
 const cardOptions = document.querySelectorAll('.card-options')
 cardOptions.forEach(button=> {
-  const cardID = this.ParentNode.ParentNode.dataset.cardid
+  //const cardID = this.ParentNode.ParentNode.dataset.cardid
 
 })
+
+//close menus if open
+window.onclick = function(event) {
+  if (!event.target.matches('.options')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}

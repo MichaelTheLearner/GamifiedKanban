@@ -8,10 +8,22 @@
               <p class="card-title">              
                 <%= columns[i].title %>
               </p>
-              <span class="material-symbols-outlined column-options">
+              <span class="material-symbols-outlined options column-options">
                 more_horiz
                 </span>
+                <div class="dropdown-content">
+                  <form
+                        action="/kanban/deleteColumn/<%= columns[i]._id %>?_method=DELETE"
+                        method="POST"
+                      >
+                        <button class="" type="submit">Delete</button>
+                      </form>
+                  <a href="#">Link 1</a>
+                  <a href="#">Link 2</a>
+                  <a href="#">Link 3</a>
+                </div>  
             </section>
+            
             
             <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#modalCreateCard"
               data-bs-columnid="<%= columns[i]._id %>">
@@ -21,15 +33,10 @@
               <% for(var j=0; j < columns[i].cards.length; j++) {%>
                 <div class="card draggable bg-c-blue" draggable="true" data-cardid="<%= columns[i].cards[j]._id %>">
                   <div class="card-title d-flex justify-content-end">
-                    <span class="material-symbols-outlined card-options">
-                      more_horiz
+                      <span class="material-symbols-outlined card-options">
+                        more_horiz
                       </span>
-                    </div>                    
-                      <div class="dropdown-content">
-                        <a href="#">Link 1</a>
-                        <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
-                      </div>                    
+                    </div>          
                     <div class="card-body">
                       <h5 class="card-title text-white">
                         <%= columns[i].cards[j].title %>
