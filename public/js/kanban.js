@@ -61,3 +61,22 @@ function addCardToTarget(cardID, columnID) {
   location.reload();
 }
 
+// option buttons
+const columnOptions = document.querySelectorAll('.column-options')
+columnOptions.forEach(button => {
+  button.addEventListener('click', (e)=>{
+    const dropdown = e.target.ParentNode.querySelector('dropdown-content');
+    dropdown.classList.toggle("show");
+  })
+  const columnID = e.target.ParentNode.ParentNode.dataset.columnid
+})
+
+function columnMenu(){
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+const cardOptions = document.querySelectorAll('.card-options')
+cardOptions.forEach(button=> {
+  const cardID = this.ParentNode.ParentNode.dataset.cardid
+
+})

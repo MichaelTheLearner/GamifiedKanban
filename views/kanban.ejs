@@ -4,9 +4,15 @@
       <ul class="row list-unstyled">
         <% for(var i=0; i < columns.length; i++) {%>
           <section class="column card" data-columnid="<%= columns[i]._id %>">
-            <p class="card-title">
-              <%= columns[i].title %>
-            </p>
+            <section class="column-header d-flex justify-content-between align-items-center">
+              <p class="card-title">              
+                <%= columns[i].title %>
+              </p>
+              <span class="material-symbols-outlined column-options">
+                more_horiz
+                </span>
+            </section>
+            
             <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#modalCreateCard"
               data-bs-columnid="<%= columns[i]._id %>">
               Add a card
@@ -14,7 +20,16 @@
             <ul class="row list-unstyled">
               <% for(var j=0; j < columns[i].cards.length; j++) {%>
                 <div class="card draggable bg-c-blue" draggable="true" data-cardid="<%= columns[i].cards[j]._id %>">
-                  <div class="card-content">
+                  <div class="card-title d-flex justify-content-end">
+                    <span class="material-symbols-outlined card-options">
+                      more_horiz
+                      </span>
+                    </div>                    
+                      <div class="dropdown-content">
+                        <a href="#">Link 1</a>
+                        <a href="#">Link 2</a>
+                        <a href="#">Link 3</a>
+                      </div>                    
                     <div class="card-body">
                       <h5 class="card-title text-white">
                         <%= columns[i].cards[j].title %>
@@ -23,12 +38,12 @@
                         <h6 class="card-subtitle mb-2 text-muted">Type: <%= columns[i].cards[j].type %></h6>
                         <p class="card-text"><%= columns[i].cards[j].notes %></p>
                       </div>
-                      <div class="progress mt-1 " data-height="8" style="height: 8px;">
+                      <!-- <div class="progress mt-1 " data-height="8" style="height: 8px;">
                         <div class="progress-bar l-bg-cyan" role="progressbar" data-width="25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;"></div>
-                    </div>
+                      </div> -->
                       
                     </div>
-                  </div>
+                  
                 </div>
                 <% } %>
             </ul>
