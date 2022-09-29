@@ -1,56 +1,58 @@
 <%- include('partials/header') -%>
-  <div class="container">
+  <div class="container main">
     <div class="row justify-content-center mt-5">
       <ul class="row list-unstyled">
         <% for(var i=0; i < columns.length; i++) {%>
           <section class="column card" data-columnid="<%= columns[i]._id %>">
             <section class="column-header d-flex justify-content-between align-items-center">
-              <p class="card-title">              
+              <p class="card-title">
                 <%= columns[i].title %>
               </p>
               <span class="material-symbols-outlined options column-options">
                 more_horiz
-                </span>
-                <div class="dropdown-content">
-                  <form
-                        action="/kanban/deleteColumn/<%= columns[i]._id %>?_method=DELETE"
-                        method="POST"
-                      >
-                        <button class="" type="submit">Delete</button>
-                      </form>
-                  <a href="#">Link 1</a>
-                  <a href="#">Link 2</a>
-                  <a href="#">Link 3</a>
-                </div>  
+              </span>
+              <div class="dropdown-content absolute right-0 top-5 z-10 mt-2 w-56 origin-top-right rounded-md bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                <form action="/kanban/deleteColumn/<%= columns[i]._id %>?_method=DELETE" method="POST" class="block w-full">
+                  <button class="text-gray-700 text-left block w-full px-4 py-2 text-sm" type="submit">Delete</button>
+                </form>
+
+                <a href="#" class="text-gray-700 block px-4 py-2 text-sm">Link 1</a>
+                <a href="#" class="text-gray-700 block px-4 py-2 text-sm">Link 2</a>
+                <a href="#" class="text-gray-700 block px-4 py-2 text-sm">Link 3</a>
+              </div>
             </section>
-            
-            
+
+
             <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#modalCreateCard"
               data-bs-columnid="<%= columns[i]._id %>">
               Add a card
             </button>
-            <ul class="row list-unstyled">
+            <ul class="row list-unstyled justify-content-center">
               <% for(var j=0; j < columns[i].cards.length; j++) {%>
-                <div class="card draggable bg-c-blue" draggable="true" data-cardid="<%= columns[i].cards[j]._id %>">
-                  <div class="card-title d-flex justify-content-end">
-                      <span class="material-symbols-outlined card-options">
-                        more_horiz
-                      </span>
-                    </div>          
-                    <div class="card-body">
-                      <h5 class="card-title text-white">
-                        <%= columns[i].cards[j].title %>
-                      </h5>
-                      <div class="row">
-                        <h6 class="card-subtitle mb-2 text-muted">Type: <%= columns[i].cards[j].type %></h6>
-                        <p class="card-text"><%= columns[i].cards[j].notes %></p>
-                      </div>
-                      <!-- <div class="progress mt-1 " data-height="8" style="height: 8px;">
+                <div class="card column-card draggable border-left-blue mt-2" draggable="true" data-cardid="<%= columns[i].cards[j]._id %>">
+                  <div class="card-title d-flex justify-content-between mb-0">
+                    <h5 class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                      <%= columns[i].cards[j].title %>
+                    </h5>
+                    <span class="material-symbols-outlined card-options">
+                      more_horiz
+                    </span>
+                  </div>
+                  <div class="card-body pt-1">
+                    
+                    <div class="row">
+                      
+                      </h6>
+                      <p class="card-text">
+                        <%= columns[i].cards[j].notes %>
+                      </p>
+                    </div>
+                    <!-- <div class="progress mt-1 " data-height="8" style="height: 8px;">
                         <div class="progress-bar l-bg-cyan" role="progressbar" data-width="25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;"></div>
                       </div> -->
-                      
-                    </div>
-                  
+
+                  </div>
+
                 </div>
                 <% } %>
             </ul>
@@ -66,7 +68,7 @@
         </span>
     </a> -->
 
-  <button type="button" style="border-width: 0;" class="floating-container" data-bs-toggle="modal"
+  <button type="button" style="border-width: 0; position:absolute; bottom: 50px; right:150px;" class="" data-bs-toggle="modal"
     data-bs-target="#modalCreateColumn">
     <div class="floating-button material-icons">dashboard</div>
   </button>
