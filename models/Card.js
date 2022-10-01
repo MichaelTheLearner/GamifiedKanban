@@ -37,7 +37,7 @@ const CardSchema = new mongoose.Schema({
     repeat: {
         type: Boolean,
         default: false,
-    }
+    },
 }, { minimize: false })
 
 module.exports = mongoose.model('Card', CardSchema);

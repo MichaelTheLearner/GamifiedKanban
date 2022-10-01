@@ -8,7 +8,7 @@
     width: 272px;
     min-height: 300px;
     margin-right:25px;
-    background-image: linear-gradient(to right bottom, #f6f6f6, #eaeaea, #dedede, #d3d3d3, #c7c7c7);
+    background-color: #f4f3ef;
     /* Shadows */
     box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
 }
@@ -46,7 +46,8 @@ html, body {
 }
 
 .border-left-blue {
-  border-left: 3px solid blue;
+  /* border-left: 3px solid blue; */
+  border: 1px solid lightskyblue;
 }
 
 
@@ -168,6 +169,10 @@ html, body {
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
   display: none;
+  position: absolute;
+  right: 0px;
+  top: 25px;
+  
 }
 
 

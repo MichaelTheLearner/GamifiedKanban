@@ -81,8 +81,14 @@ function columnMenu(){
 
 const cardOptions = document.querySelectorAll('.card-options')
 cardOptions.forEach(button=> {
-  //const cardID = this.ParentNode.ParentNode.dataset.cardid
+  button.addEventListener('click', (e)=>{
+    
+    const dropdown = e.target.parentNode.querySelector('.dropdown-content');
+    console.log(dropdown)
+    dropdown.classList.toggle("show");
+    const columnID = e.target.parentNode.parentNode.dataset.columnid
 
+  })  
 })
 
 //close menus if open

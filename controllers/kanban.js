@@ -54,7 +54,7 @@ module.exports = {
   deleteColumn: async (req, res) => {
     try {
       //delete column
-      Column.remove({ _id: req.params.id })
+      await Column.findOneAndDelete({ _id: req.params.id })
 
       console.log("Column has been removed!");
       res.redirect("/kanban");
@@ -109,12 +109,13 @@ module.exports = {
   // },
   deleteCard: async (req, res) => {
     try {
-      await Card.remove({ _id: req.params.id })
+      //delete card
+      await Card.findOneAndDelete({ _id: req.params.id })
 
       console.log("Card has been removed!");
       res.redirect("/kanban");
     } catch (err) {
-      console.log(err);
+      console.log(err)
     }
   },
   createTodo: async (req, res) => {
