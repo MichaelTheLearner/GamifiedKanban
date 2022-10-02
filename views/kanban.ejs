@@ -29,9 +29,8 @@
               Add a card
             </button>
             <div class="row list-unstyled justify-content-center">
-              <% for(var j=0; j < columns[i].cards.length; j++) {%>
-                <div class="card column-card draggable border-left-blue mt-2"
-                  style="<%= columns[i].cards[j].difficulty == 1 ? 'border: 1px solid lightskyblue;' : columns[i].cards[j].difficulty == 3 ? 'border: 1px solid green;' : columns[i].cards[j].difficulty == 5 ? 'border: 1px solid blue;' : columns[i].cards[j].difficulty == 1 ? 'border: 1px solid black;' : 'border: 1px solid red;' %>"
+              <% for(var j=0; j < columns[i].cards.length; j++) { %>
+                <div class="card column-card draggable border-left-blue mt-2" style="<%= columns[i].cards[j].difficulty == 1 ? 'border: 1px solid lightskyblue;' : columns[i].cards[j].difficulty == 3 ? 'border: 1px solid green;' : columns[i].cards[j].difficulty == 5 ? 'border: 1px solid blue;' : columns[i].cards[j].difficulty == 1 ? 'border: 1px solid black;' : 'border: 1px solid red;' %>"
                   draggable="true" data-cardid="<%= columns[i].cards[j]._id %>">
                   <div class="card-title d-flex justify-content-between mb-0">
                     <h5 class=" text-uppercase mb-1">
